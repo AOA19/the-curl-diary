@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hair Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="px-16">
+        <h1 class="text-center text-2xl mb-8">Hair Quiz</h1>
+        <!-- Question 1 -->
+        <div class="quiz-question mb-8">
+            <h3 class="text-lg mb-3">1. Describe your curl pattern</h3>
+            <form action="/quizresults" method="POST">
+                <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
+                    <input  
+                        id="wavyRadio"    
+                        type="radio"   
+                        value="wavy"  
+                        name="wavy-pattern"
+                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label 
+                        for="wavyRadio" 
+                        class="w-full py-4 ms-2 text-sm font-medium text-black">
+                        Wavy
+                    </label>
+                </div>
+                <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
+                    <input  
+                    id="curlyRadio"    
+                    type="radio"   
+                    value="curly"  
+                    name="curly-pattern"
+                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label 
+                    for="curlyRadio" 
+                    class="w-full py-4 ms-2 text-sm font-medium text-black">
+                    Curly
+                </label>
+                </div>
+                <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
+                    <input  
+                        id="coilyRadio"    
+                        type="radio"   
+                        value="coily"  
+                        name="coily-pattern"
+                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label 
+                        for="coilyRadio" 
+                        class="w-full py-4 ms-2 text-sm font-medium text-black">
+                        Coily
+                    </label>
+                </div>
+            </div>
+            <!-- Question 2 -->
+            <div class="quiz-question mb-8">
+                <h3 class="text-lg mb-3">2. Describe your curl texture</h3>
+                <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
+                    <input  
+                        id="fineRadio"   
+                        type="radio"  
+                        value="fine"     
+                        name="fine-texture"
+                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label  
+                        for="fineRadio"  
+                        class="w-full py-4 ms-2 text-sm font-medium text-black">
+                        Fine
+                    </label>
+                </div>
+                <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
+                    <input 
+                        id="mediumRadio" 
+                        type="radio" 
+                        value="medium" 
+                        name="medium-texture"
+                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label 
+                        for="mediumRadio" 
+                        class="w-full py-4 ms-2 text-sm font-medium text-black">
+                        Medium
+                    </label>
+                </div>
+                <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
+                    <input 
+                        id="coarseRadio" 
+                        type="radio" 
+                        value="coarse"
+                        name="coarse-texture"
+                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label  
+                        for="coarseRadio"     
+                        class="w-full py-4 ms-2 text-sm font-medium text-black">
+                        Coarse
+                    </label>
+            
+                </div>
+            </div>
+            <!-- Question 3 -->
+            <div class="quiz-question mb-8">
+                <h3 class="text-lg mb-3">3. What hair issues are you currently experiencing?</h3>
+                <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
+                    <input 
+                        id="dryCheckbox" 
+                        type="checkbox" 
+                        value="dry" 
+                        name="dry-issue"
+                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label 
+                        for="dryCheckbox" 
+                        class="w-full py-4 ms-2 text-sm font-medium text-black">
+                        Dry, brittle
+                    </label>
+                </div>
+                <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
+                    <input 
+                        id="heatCheckbox" 
+                        type="checkbox" 
+                        value="heat damage" 
+                        name="heat-issue"
+                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label 
+                        for="heatCheckbox" 
+                        class="w-full py-4 ms-2 text-sm font-medium text-black">
+                        Heat Damage
+                    </label>
+                </div>
+                <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
+                    <input 
+                        id="scalpCheckbox" 
+                        type="checkbox" 
+                        value="scalp discomfort" 
+                        name="scalp-issue"
+                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label 
+                        for="scalpCheckbox" 
+                        class="w-full py-4 ms-2 text-sm font-medium text-black">
+                        Scalp Discomfort
+                    </label>
+                </div>
+                <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
+                    <input 
+                        id="transitionCheckbox" 
+                        type="checkbox" 
+                        value="transitioning" 
+                        name="transition-issue"
+                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label 
+                        for="transitionCheckbox" 
+                        class="w-full py-4 ms-2 text-sm font-medium text-black">
+                        Transitioning (relaxers)
+                    </label>
+                </div>
+                <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
+                    <input 
+                        id="buildupCheckbox" 
+                        type="checkbox" 
+                        value="buildup" 
+                        name="buildup-issue"
+                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label 
+                        for="buildupCheckbox" 
+                        class="w-full py-4 ms-2 text-sm font-medium text-black">
+                        Too much buildup
+                    </label>
+                </div>
+                <button class="rounded-md bg-blue-700 hover:bg-blue-600 px-3 py-1.5 mx-2 text-white mt-3" type="submit">Get Results</button>
+            </form>
+        </div>
+    </div>
+    <script src="main.js"></script>
+    <script src="https://kit.fontawesome.com/aabdb7c1a3.js" crossorigin="anonymous"></script>
+</body>
