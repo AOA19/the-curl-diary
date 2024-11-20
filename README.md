@@ -1,6 +1,6 @@
 # The Curl Diary 
 
-A natural hair tracker application 
+A natural hair tracker application that allow users to track their natural hair journey by providing a space where they can see their growth, and find resources that will help them on their journey all in one place.
 
 ## Install
 
