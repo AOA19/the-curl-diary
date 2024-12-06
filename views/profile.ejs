@@ -44,11 +44,11 @@
           <span class="fa fa-user"></span> 
           Account Information
         </h3>
-        <% if (user.local.email) { %>
+        <% if (user.email) { %>
           <p class="mb-5">
-            <strong>id</strong>: <%= user._id %><br>
-            <strong>email</strong>: <%= user.local.email %><br>
-            <strong>password</strong>: <%= user.local.password %>
+            <!-- <strong>id</strong>: <%= user._id %><br> -->
+            <strong>email</strong>: <%= user.email %><br>
+            <strong>password</strong>: <%= user.password %>
           </p>
           
           <a href="/unlink/local" 
