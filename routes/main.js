@@ -10,19 +10,27 @@ const resourceController = require("../controllers/resources");
 const accountController = require("../controllers/account")
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
-//Main Routes - simplified for now
+//Main Routes 
 router.get("/", homeController.getIndex);
+// User dashboard route(s)
 router.get("/dashboard", ensureAuth, postsController.getDashboard);
 // router.get("/feed", ensureAuth, postsController.getFeed);
+// Login routes
 router.get("/login", authController.getLogin);
 router.post("/login", authController.postLogin);
 router.get("/logout", authController.logout);
+// Sign up routes
 router.get("/signup", authController.getSignup);
 router.post("/signup", authController.postSignup);
-router.get("/quiz", quizController.submitQuiz);
+// Quiz route(s)
+router.get("/quiz", quizController.submitQuiz); // Add ensureAuth after testing is complete
+// Journal route(s)
 router.get("/journal", ensureAuth, journalController.getJournal)
+// Gallery route(s)
 router.get("/gallery", ensureAuth, galleryController.getGallery)
+// Resources route(s)
 router.get("/resources", resourceController.getResources)
+// Account info route(s)
 router.get("/account", ensureAuth, accountController.getAccount)
 
 module.exports = router;
