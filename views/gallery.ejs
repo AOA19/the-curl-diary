@@ -4,9 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hair Gallery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <h1>Hair Gallery</h1>
-    <p>User will be able to add photos of their hair growth journey</p>
+    <h1 class="text-center font-bold">Hair Gallery</h1>
+    <div class="mt-6">
+        <h2 class="text-center">Add to your gallery</h2>
+        <form action="/gallery/createImage" enctype="multipart/form-data" method="POST">
+            <div class="">
+                <label for="caption" class="">Caption</label>
+                <textarea class="border-solid border-2 border-black" id="caption" name="caption"></textarea>
+            </div>
+            <div class="">
+                <label for="imgUpload" class="">Upload Image</label>
+                <input type="file" class="" id="imgUpload" name="file">
+            </div>
+            <button type="submit" value="upload" class="rounded-md bg-blue-700 px-3 py-1.5 text-sm/6 font-semibold text-white">Add photo</button>
+        </form>
+    </div>
+    <div class="grid grid-cols-3 gap-4">
+        <ul class="">
+            <% for(var i=0; i<galleries.length; i++) {%>
+                <li class="col-6 justify-content-between mt-5">
+                        <img class="" src="<%= galleries[i].image%>">
+                </li>
+                <% } %>
+        </ul>
+    </div>
+
+<script src="https://kit.fontawesome.com/aabdb7c1a3.js" crossorigin="anonymous"></script>
 </body>
 </html>

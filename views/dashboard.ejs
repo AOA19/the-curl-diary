@@ -10,6 +10,8 @@
 
 <body>
     <nav>
+      <img class="w-full max-w-[20%]" src="<%=user.profilePic%>" alt="<%=user.userName%>'s profile photo">
+      <span><%=user.userName%></span>
         <div class="hidden w-full md:block md:w-auto" id="navbar-default">
           <ul
             class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
@@ -45,30 +47,21 @@
           </ul>
         </div>
     </nav>
-      <h1 class="text-center">Your Dashboard</h1>
-    <!-- LOCAL INFORMATION -->
-      <div>
-        <h3>
-          <span class="fa fa-user"></span> 
-          Account Information
-        </h3>
-        <% if (user.email) { %>
-          <p class="mb-5">
-            <!-- <strong>id</strong>: <%= user._id %><br> -->
-            <strong>email</strong>: <%= user.email %><br>
-            <strong>password</strong>: <%= user.password %>
-          </p>
-          
-          <a href="/unlink/local" 
-          class="rounded-md font-semibold px-4 py-2 mx-2 text-red-700 border-2 border-red-700 hover:bg-red-700 hover:text-white">
-          Delete Account
-        </a>
-        <% } else { %>
-          <a href="/connect/local" class="btn btn-default">Connect Local</a>
-          <% } %>
-        </div>
-   
-
+      <h1 class="text-center">Welcome, <%= user.userName %></h1>
+      <section>
+        <!-- For Journal  -->
+        <section class="journal-section">
+          <h2>Your Journal Entries</h2>
+        </section>
+        <!-- For Gallery -->
+        <section class="gallery-section">
+          <h2>Your Hair Gallery</h2>
+        </section>
+        <!-- For quiz results/ hair routine -->
+        <section class="results-section">
+          <h2>Your Quiz Results</h2>
+        </section>
+      </section>
     <script src="main.js"></script>
     <script src="https://kit.fontawesome.com/aabdb7c1a3.js" crossorigin="anonymous"></script>
 </body>
