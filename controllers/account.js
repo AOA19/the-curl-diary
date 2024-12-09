@@ -1,5 +1,11 @@
+// const cloudinary = require("../middleware/cloudinary");
+
 module.exports = {
-  getAccount: (req, res) => {
-    res.render("account.ejs");
+  getAccount: async (req, res) => {
+    try {
+      res.render("account.ejs", { user: req.user });
+    } catch (err) {
+      console.log(err);
+    }
   },
 };

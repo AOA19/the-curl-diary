@@ -1,6 +1,7 @@
 const passport = require("passport");
 const validator = require("validator");
 const User = require("../models/User");
+const cloudinary = require("../middleware/cloudinary");
 
 exports.getLogin = (req, res) => {
   if (req.user) {
@@ -62,8 +63,8 @@ exports.getSignup = (req, res) => {
     title: "Create Account",
   });
 };
-
 exports.postSignup = async (req, res, next) => {
+  console.log(req.body);
   const validationErrors = [];
   if (!validator.isEmail(req.body.email)) validationErrors.push({ msg: "Please enter a valid email address." });
   if (!validator.isLength(req.body.password, { min: 8 }))
@@ -94,13 +95,16 @@ exports.postSignup = async (req, res, next) => {
       });
       return res.redirect("../signup");
     }
-
+    // Upload profile picture to cloudinary
+    const result = await cloudinary.uploader.upload(req.file.path);
+   
     const user = new User({
       userName: req.body.userName,
       email: req.body.email,
       password: req.body.password,
+      profilePic: result.secure_url,
+      cloudinaryId: result.public_id,
     });
-
     await user.save();
 
     req.logIn(user, (err) => {
