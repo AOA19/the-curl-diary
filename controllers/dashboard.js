@@ -1,5 +1,6 @@
 const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
+// const User = require("../models/User")
 // const Comment = require("../models/Comment");
 
 module.exports = {
@@ -42,7 +43,7 @@ module.exports = {
         user: req.user.id,
       });
       console.log("Post has been added!");
-      res.redirect("/dashboard");
+      res.redirect("/profile");
     } catch (err) {
       console.log(err);
     }
@@ -75,6 +76,4 @@ module.exports = {
       res.redirect("/dashboard");
     }
   },
-
-
 };
