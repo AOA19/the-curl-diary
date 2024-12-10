@@ -29,8 +29,9 @@ router.get("/quiz", quizController.submitQuiz); // Add ensureAuth after testing 
 // Journal route(s)
 router.get("/journal", ensureAuth, journalController.getJournal)
 router.post("/journal/createEntry", journalController.createEntry)
-router.put("/journal/editEntry/:id", journalController.editEntry)
-router.delete("/journal/deleteEntry/:pokemon", journalController.deleteEntry)
+router.get("/journal/editEntry/:id", journalController.editEntry)
+router.put("/journal/updateEntry/:id", journalController.updateEntry)
+router.delete("/journal/deleteEntry/:id", journalController.deleteEntry)
 // Gallery route(s)
 router.get("/gallery", ensureAuth, galleryController.getGallery)
 router.post("/gallery/createImage", upload.single("file"), galleryController.createImage);
