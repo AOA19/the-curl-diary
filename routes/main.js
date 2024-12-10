@@ -31,6 +31,9 @@ router.get("/journal", ensureAuth, journalController.getJournal)
 // Gallery route(s)
 router.get("/gallery", ensureAuth, galleryController.getGallery)
 router.post("/gallery/createImage", upload.single("file"), galleryController.createImage);
+router.put("/gallery/updateCaption/:id", galleryController.updateCaption)
+// router.delete("/deleteImage/:id", galleryController.deleteImage);
+router.delete("/gallery/deleteImage/:id", galleryController.deleteImage);
 // Resources route(s)
 router.get("/resources", resourceController.getResources)
 // Account info route(s)
