@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Settings</title>
+    <!-- For Tailwind -->
+    <link rel="stylesheet" href="/css/output.css">
+    <!-- Flowbite CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <h1>Account Information</h1>
+    <div>
+        <img class="w-full max-w-[20%]" src="<%=user.profilePic%>" alt="<%=user.userName%>'s profile photo">
+        <p><strong>User Name</strong>: <%= user.userName %></p>
+        <p><strong>Email</strong>: <%= user.email %></p>
+        <p><strong>Password</strong>: <%= user.password %></p>
+        <a href="/logout" class="col-3 btn btn-primary">Logout</a>
+    </div>
+    
+<%- include('partials/footer') -%>

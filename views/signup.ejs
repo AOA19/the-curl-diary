@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="/css/output.css">
+</head>
+
+<body>
+    <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+        <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+            <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
+                Create an Account
+            </h2>
+        </div>
+        <div class="">
+                <!-- Alert Message  -->
+                <% if (locals.messages.errors) { %>
+                    <% messages.errors.forEach( el=> { %>
+                        <div class="p-4 my-4 m-auto text-sm text-red-800 text-center rounded-lg bg-red-50 w-1/4">
+                            <%= el.msg %>
+                        </div>
+                        <% }) %>
+                            <% } %>
+                                <% if (locals.messages.info) { %>
+                                    <% messages.info.forEach( el=> { %>
+                                        <div class="">
+                                            <%= el.msg %>
+                                        </div>
+                <% }) %>
+                    <% } %>
+                <!-- Sign Up form -->
+                <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                    <form action="/signup" method="POST" enctype="multipart/form-data">
+                        <div class="mt-2">
+                            <label 
+                                for="userName" 
+                                class="block text-sm/6 font-medium text-gray-900">
+                                Username
+                            </label>
+                            <input 
+                                type="text" 
+                                id="userName"
+                                name="userName"
+                                class="block w-full rounded-md border-0 py-1.5 ps-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#478978] sm:text-sm/6"
+                                required
+                                >
+                        </div>
+                        <div class="mt-2">
+                            <label
+                                for="emailAdd" 
+                                class="block text-sm/6 font-medium text-gray-900">
+                                Email
+                                </label>
+                            <input
+                                type="email" 
+                                id="emailAdd" 
+                                name="email"
+                                class="block w-full rounded-md border-0 py-1.5 ps-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#478978] sm:text-sm/6"
+                                >
+                             <div id="emailHelp" class="text-sm">We'll never share your email with anyone else.</div>
+                         </div>
+                         <div class="mt-2">
+                            <label for="password" class="block text-sm/6 font-medium text-gray-900">
+                                Password
+                            </label>
+                            <input
+                                type="password" 
+                                id="password" 
+                                name="password"
+                                class="block w-full rounded-md border-0 py-1.5 ps-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-yellow-500 sm:text-sm/6"
+                                >
+                         </div>
+                        <div class="mt-2">
+                            <label
+                                for="confirmPassword" 
+                                class="block text-sm/6 font-medium text-gray-900">
+                                Confirm Password
+                             </label>
+                             <input 
+                                type="password" 
+                                id="confirmPassword" 
+                                name="confirmPassword"
+                                class="block w-full rounded-md border-0 py-1.5 ps-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-yellow-500 sm:text-sm/6" 
+                                >
+                         </div>
+                         <div class="mt-2">
+                            <label 
+                                for="profilePic" 
+                                class="block mb-2 text-sm font-medium text-gray-900">
+                                Profile Photo
+                            </label>
+                            <input 
+                                type="file"
+                                id="profilePic"
+                                name="profilePic"
+                                class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none mb-4"
+                                aria-describedby="profilePicHelp" 
+                                required
+                            >
+                         </div>
+                        <button 
+                            type="submit"
+                            class="flex w-full justify-center rounded-md bg-blue-700 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-sky-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-60">
+                            Sign Up
+                        </button>
+                        </form>
+                </div>
+                <p class="mt-10 text-center text-sm/6 text-gray-500">
+                    Already have an account?
+                    <a href="/login" class="font-semibold text-blue-700 hover:text-sky-600">Login</a>
+                </p>
+                <p class="mt-2 text-center text-sm/6 text-gray-500">
+                    Back to
+                    <a href="/" class="font-semibold text-blue-700  hover:text-sky-600">Home</a>
+                </p>
+                </div>
+    </div>
+<%- include('partials/footer') -%>
