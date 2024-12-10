@@ -30,19 +30,19 @@ module.exports = {
       console.log(err);
     }
   },
-  updateCaption : async (req, res) => {
-    try {
-      await Gallery.findByIdAndUpdate(req.params.id,
-        {caption: req.body.caption},
-        {new: true}
-      );
-      console.log("Caption updated")
-      res.redirect("/gallery")
-    } catch (err) {
-      console.log(err)
-      res.redirect("/gallery")
-    }
-  },
+  // updateCaption : async (req, res) => {
+  //   try {
+  //     await Gallery.findByIdAndUpdate(req.params.id,
+  //       {caption: req.body.caption},
+  //       {new: true}
+  //     );
+  //     console.log("Caption updated")
+  //     res.redirect("/gallery")
+  //   } catch (err) {
+  //     console.log(err)
+  //     res.redirect("/gallery")
+  //   }
+  // },
 
   deleteImage: async (req, res) => {
     try {
