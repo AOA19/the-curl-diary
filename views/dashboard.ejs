@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard</title>
   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon.png" />
+  <!-- Flowbite CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+  <!-- For Tailwind -->
   <link rel="stylesheet" href="/css/styles.css">
   <link rel="stylesheet" href="/css/output.css">
 </head>
@@ -116,27 +119,41 @@
       </div>
     </aside>
     <!-- Right content -->
-    <section class="p-4 sm:ml-64 border-2 border-black">
-      <h1 class="pt-20">Welcome, <%= user.userName %></h1>
-      <div class="border-2 border-black p-6">
+    <section class="p-4 sm:ml-64">
+      <h1 class="pt-20 text-orchid font-bold text-3xl">Welcome, <%= user.userName %></h1>
+      <div class="border-2 border-lavendar p-6 grid grid-cols-2 gap-4 mt-10">
         <!-- For Journal  -->
         <section class="journal-section">
-          <h2>Your Journal Entries</h2>
+          <h2 class="text-center text-xl">Recent Journal Entry</h2>
+          <%if (latestEntry) {%>
+            <div class="border-2 border-lavendar h-[164px]">
+              <!-- Display entry title -->
+              <h3 class="font-bold text-orchid text-xl py-2">
+                <%= latestEntry.title %>
+              </h3>
+              <!-- Display entry content -->
+              <p class="">
+                <%= latestEntry.entry %>
+              </p>
+            </div>
+         <% } %>
+        <a href="/journal" class="italic text-floral">See more entries</a>
         </section>
         <!-- For Gallery -->
-        <section class="gallery-section p-2 border-2 border-black">
-          <h2 class="text-center text-2xl">Your Hair Gallery</h2>
+        <section class="gallery-section p-2 ">
+          <h2 class="text-center text-xl">Recent Uploads</h2>
         <% if (images && images.length> 0) { %>
-          <div class="grid grid-flow-col auto-cols-max gap-9 flex justify-center">
+          <div class="grid grid-flow-col auto-cols-max gap-9 flex justify-center border-2 border-lavendar py-4">
             <% images.forEach(image=> { %>
-              <div class="w-48 h-48">
-                <img src="<%= image.image %>" alt="<%= image.caption %>" class="object-cover object-top w-48 h-48">
+              <div class="w-40 h-40">
+                <img src="<%= image.image %>" alt="<%= image.caption %>" class="object-cover object-top w-40 h-40">
               </div>
               <% }); %>
               <% } else { %>
                 <p>No images found in your gallery.</p>
                 <% } %>
           </div>
+          <a href="/gallery" class="italic text-floral">See more photos</a>
         </section>
         <!-- For quiz results/ hair routine -->
         <section class="results-section">
