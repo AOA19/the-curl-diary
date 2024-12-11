@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* @import url('https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,700;1,700&family=Laila:wght@700&family=Work+Sans:wght@100..900&display=swap'); */
+
+/* Custom font */
+@layer base {
+    @font-face {
+        font-family: 'Brasika-Display';
+        src: url("../fonts/brasika-display.otf");
+    }
+
+}
+

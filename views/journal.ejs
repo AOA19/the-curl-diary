@@ -4,10 +4,269 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hair Journal</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon.png" />
+    <!-- Flowbite CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+    <!-- For Tailwind -->
+    <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/output.css">
 </head>
 <body>
-    <h1>Hair Journal</h1>
-    <p>User will be able to add different journal entries</p>
+    <nav class="fixed top-0 z-50 w-full bg-orchid border-b border-gray-200">
+      <div class="px-3 py-3 lg:px-5 lg:pl-3">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center justify-start rtl:justify-end">
+            <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar"
+              type="button"
+              class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
+              <span class="sr-only">Open sidebar</span>
+              <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+                <path clip-rule="evenodd" fill-rule="evenodd"
+                  d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z">
+                </path>
+              </svg>
+            </button>
+            <a href="/dashboard" class="flex ms-2 md:me-24">
+              <h1 class="text-white text-2xl font-['Brasika-Display']">The Curl Diary</h1>
+            </a>
+          </div>
+          <div class="flex items-center">
+            <div class="flex items-center ms-3">
+              <div>
+                <button type="button"
+                  class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300"
+                  aria-expanded="false" data-dropdown-toggle="dropdown-user">
+                  <span class="sr-only">Open user menu</span>
+                  <img class="w-10 h-10 rounded-full" src="<%=user.profilePic%>" 
+                    alt="<%=user.userName%> profile photo">
+                </button>
+              </div>
+              <div
+                class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow"
+                id="dropdown-user">
+                <div class="px-4 py-3" role="none">
+                  <p class="text-sm text-gray-900" role="none">
+                    <%=user.userName%>
+                  </p>
+                  <p class="text-sm font-medium text-gray-900 truncate" role="none">
+                  <%=user.email%>
+                  </p>
+                </div>
+                <ul class="py-1" role="none">
+                  <li>
+                    <a href="account"
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      role="menuitem">Account Settings</a>
+                  </li>
+                  <li>
+                    <a href="logout"
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      role="menuitem">Log out</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
     
+    <aside id="logo-sidebar"
+      class="fixed top-0 left-0 z-40 w-64 h-full pt-20 transition-transform -translate-x-full bg-orchid border-r border-gray-200 sm:translate-x-0"
+      aria-label="Sidebar">
+      <div class="h-full px-3 pb-4 overflow-y-auto">
+        <ul class="space-y-2 font-medium">
+          <li>
+            <a href="/dashboard"
+              class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-lavendar group">
+              <span class="ms-3 text-white hover:text-orchid">Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="/journal"
+              class="flex items-center p-2 text-gray-900 rounded-lg bg-lavendar group" aria-current="page">
+              <span class="flex-1 ms-3 whitespace-nowrap text-orchid ">Journal</span>
+            </a>
+          </li>
+          <li>
+            <a href="/gallery"
+              class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-lavendar group">
+              <span class="flex-1 ms-3 whitespace-nowrap text-white hover:text-orchid">Hair Gallery</span>
+            </a>
+          </li>
+          <li>
+            <a href="/resources"
+              class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-lavendar group">
+              <span class="flex-1 ms-3 whitespace-nowrap text-white hover:text-orchid">Resources</span>
+            </a>
+          </li>
+          <li>
+            <a href="/quiz"
+              class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-lavendar">
+              <span class="flex-1 ms-3 whitespace-nowrap text-white hover:text-orchid">Hair Quiz</span>
+            </a>
+          </li>
+        </ul>
+        <ul>
+            <li class="mt-[130%] border-t border-gray-200">
+              <a href="/logout" class="flex items-center p-2 text-gray-900 rounded-lg ">
+                <span class="flex-1 ms-3 whitespace-nowrap text-white">Log Out</span>
+              </a>
+            </li>
+        </ul>
+      </div>
+    </aside>
+    <section class="p-4 sm:ml-64">
+        <h1 class="text-center font-bold mt-16">Hair Journal</h1>
+        <!-- Display Entry -->
+        <ul class="pt-10">
+        <% for(var i=0; i<journals.length; i++) {%>
+                    <li class="flex flex-col items-center border-2 border-lavendar py-6 mx-16 my-4">
+                        <!-- Display entry title -->
+                        <h3 class="font-bold text-orchid text-xl py-2"><%= journals[i].title %></h3>
+                        <!-- Display entry content -->
+                         <p class=""><%= journals[i].entry %></p>
+                         <!-- Display date entry created -->
+                        <span class="py-4"><span class="font-bold text-orchid" >Date Created:</span><%= journals[i].createdAt.toLocaleDateString() %></span>
+                        
+                        <%if(journals[i].user == user.id){ %>
+                            <!-- Edit Entry -->
+                            <!-- Modal toggle -->
+                            <button data-modal-target="edit-modal" data-modal-toggle="edit-modal"
+                                class="block text-white bg-orchid hover:bg-floral focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-8 py-2.5 mt-6 text-center"
+                                type="button">
+                                Edit Entry
+                            </button>
+                            <!-- Main modal -->
+                            <div id="edit-modal" tabindex="-1" aria-hidden="true"
+                                class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full mr-20">
+                                <div class="relative p-4 w-full max-w-md max-h-full">
+                                    <div class="relative bg-white rounded-lg shadow">
+                                        <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
+                                            <h3 class="text-lg font-semibold text-gray-900">
+                                                Edit Entry
+                                            </h3>
+                                            <button type="button"
+                                                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                                                data-modal-toggle="journal-modal">
+                                                <svg class="me-1 -ms-1 w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 20 20">
+                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                                </svg>
+                                                <span class="sr-only">Close modal</span>
+                                            </button>
+                                        </div>
+                            
+                                        <form action="/journal/updateEntry/<%=journals[i].id%>/?_method=PUT" method="POST" class="p-4 md:p-5">
+                                            <div class="mb-4">
+                                                <div class="col-span-2">
+                                                    <label for="editTitle" class="block mb-2 text-sm font-medium text-gray-900">Edit
+                                                        Title</label>
+                                                    <input type="text" name="editTitle" id="editTitle" value="<%=journals.title%>"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full"
+                                                        required>
+                                                </div>
+                                                <div class="col-span-2 mt-4">
+                                                    <label for="entry" class="block mb-2 text-sm font-medium text-gray-900"> Edit
+                                                        Entry</label>
+                                                    <textarea id="editEntry" rows="4" name="editEntry"
+                                                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                                                        placeholder="Write your entry here" required><%=journals.entry%></textarea>
+                                                </div>
+                                            </div>
+                                            <button type="submit"
+                                                class="text-white inline-flex items-center bg-orchid hover:bg-floral focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                                <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd"
+                                                        d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                                        clip-rule="evenodd"></path>
+                                                </svg>
+                                                Update Entry
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Delete Entry -->
+                            <form action="/journal/deleteEntry/<%=journals[i].id%>/?_method=DELETE" method="POST" class="">
+                                <button class="block text-white bg-[#E1314E] hover:bg-[#D58592] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-10 py-2.5 mt-5 text-center" type="submit">Delete</button>
+                            </form>
+                    </li>
+                <%}%>
+        </ul>
+        <%}%>
+    
+         <!-- Add Entry -->
+        <!-- Modal toggle -->
+             <div class="absolute bottom-0 py-8">
+                 <button data-modal-target="journal-modal" data-modal-toggle="journal-modal"
+                     class="block text-white bg-orchid hover:bg-floral focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                     type="button">
+                     Add New Entry
+                 </button>
+             </div>
+
+        <!-- Main modal -->
+        <div id="journal-modal" tabindex="-1" aria-hidden="true"
+            class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            <div class="relative p-4 w-full max-w-md max-h-full mr-[60px]">
+                <!-- Modal content -->
+                <div class="relative bg-white rounded-lg shadow ">
+                    <!-- Modal header -->
+                    <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
+                        <h3 class="text-lg font-semibold text-gray-900">
+                            Add New Entry
+                        </h3>
+                        <button type="button"
+                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                            data-modal-toggle="journal-modal">
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                    </div>
+        
+                    <!-- Modal body -->
+                    <form action="/journal/createEntry"  method="POST" class="p-4 md:p-5">
+                        <div class="mb-4">
+                            <div class="col-span-2">
+                                <label for="title"
+                                    class="block mb-2 text-sm font-medium text-gray-900">Title</label>
+                                <input type="text" name="title" id="title"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full"
+                                    required>
+                            </div>
+                            <div class="col-span-2 mt-4">
+                                <label for="entry"
+                                    class="block mb-2 text-sm font-medium text-gray-900">Entry</label>
+                                <textarea id="entry" rows="4" name="entry"
+                                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                                    placeholder="Write your entry here" required></textarea>
+                            </div>
+                        </div>
+                        <button type="submit"
+                            class="text-white inline-flex items-center bg-orchid hover:bg-floral focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                            <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            Add Entry
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
 <%- include('partials/footer') -%>
+

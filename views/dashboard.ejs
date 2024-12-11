@@ -4,63 +4,163 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon.png" />
+  <!-- Flowbite CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+  <!-- For Tailwind -->
+  <link rel="stylesheet" href="/css/styles.css">
   <link rel="stylesheet" href="/css/output.css">
 </head>
 
 <body>
-    <nav>
-      <img class="w-full max-w-[20%]" src="<%=user.profilePic%>" alt="<%=user.userName%>'s profile photo">
-      <span><%=user.userName%></span>
-        <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-          <ul
-            class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            <li>
-              <a href="/dashboard"
-                class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
-                aria-current="page">Dashboard</a>
-            </li>
-            <li>
-              <a href="/journal"
-                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Journal</a>
-            </li>
-            <li>
-              <a href="/gallery"
-                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Hair Gallery</a>
-            </li>
-            <li>
-              <a href="/resources"
-                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Resources</a>
-            </li>
-            <li>
-              <a href="/quiz"
-                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Hair Quiz</a>
-            </li>
-            <li>
-              <a href="/account"
-                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Account Settings</a>
-            </li>
-            <li>
-              <a href="/logout"
-                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Logout</a>
-            </li>
-          </ul>
+    <nav class="fixed top-0 z-50 w-full bg-orchid border-b border-gray-200">
+      <div class="px-3 py-3 lg:px-5 lg:pl-3">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center justify-start rtl:justify-end">
+            <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar"
+              type="button"
+              class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
+              <span class="sr-only">Open sidebar</span>
+              <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+                <path clip-rule="evenodd" fill-rule="evenodd"
+                  d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z">
+                </path>
+              </svg>
+            </button>
+            <a href="/dashboard" class="flex ms-2 md:me-24">
+              <h1 class="text-white text-2xl font-['Brasika-Display']">The Curl Diary</h1>
+            </a>
+          </div>
+          <div class="flex items-center">
+            <div class="flex items-center ms-3">
+              <div>
+                <button type="button"
+                  class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300"
+                  aria-expanded="false" data-dropdown-toggle="dropdown-user">
+                  <span class="sr-only">Open user menu</span>
+                  <img class="w-10 h-10 rounded-full" src="<%=user.profilePic%>" 
+                    alt="<%=user.userName%> profile photo">
+                </button>
+              </div>
+              <div
+                class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow"
+                id="dropdown-user">
+                <div class="px-4 py-3" role="none">
+                  <p class="text-sm text-gray-900" role="none">
+                    <%=user.userName%>
+                  </p>
+                  <p class="text-sm font-medium text-gray-900 truncate" role="none">
+                  <%=user.email%>
+                  </p>
+                </div>
+                <ul class="py-1" role="none">
+                  <li>
+                    <a href="account"
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      role="menuitem">Account Settings</a>
+                  </li>
+                  <li>
+                    <a href="logout"
+                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      role="menuitem">Log out</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </nav>
-      <h1 class="text-center">Welcome, <%= user.userName %></h1>
-      <section>
+    
+    <aside id="logo-sidebar"
+      class="fixed top-0 left-0 z-40 w-64 h-full pt-20 transition-transform -translate-x-full bg-orchid border-r border-gray-200 sm:translate-x-0"
+      aria-label="Sidebar">
+      <div class="h-full px-3 pb-4 overflow-y-auto">
+        <ul class="space-y-2 font-medium">
+          <li>
+            <a href="/dashboard"
+              class="flex items-center p-2 text-gray-900 rounded-lg bg-lavendar group" aria-current="page">
+              <span class="ms-3 text-orchid">Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="/journal"
+              class="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-lavendar group">
+              <span class="flex-1 ms-3 whitespace-nowrap text-white hover:text-orchid ">Journal</span>
+            </a>
+          </li>
+          <li>
+            <a href="/gallery"
+              class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-lavendar group">
+              <span class="flex-1 ms-3 whitespace-nowrap text-white hover:text-orchid">Hair Gallery</span>
+            </a>
+          </li>
+          <li>
+            <a href="/resources"
+              class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-lavendar group">
+              <span class="flex-1 ms-3 whitespace-nowrap text-white hover:text-orchid">Resources</span>
+            </a>
+          </li>
+          <li>
+            <a href="/quiz"
+              class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-lavendar">
+              <span class="flex-1 ms-3 whitespace-nowrap text-white hover:text-orchid">Hair Quiz</span>
+            </a>
+          </li>
+        </ul>
+        <ul>
+            <li class="mt-[130%] border-t border-gray-200">
+              <a href="/logout" class="flex items-center p-2 text-gray-900 rounded-lg ">
+                <span class="flex-1 ms-3 whitespace-nowrap text-white">Log Out</span>
+              </a>
+            </li>
+        </ul>
+      </div>
+    </aside>
+    <!-- Right content -->
+    <section class="p-4 sm:ml-64">
+      <h1 class="pt-20 text-orchid font-bold text-3xl">Welcome, <%= user.userName %></h1>
+      <div class="border-2 border-lavendar p-6 grid grid-cols-2 gap-4 mt-10">
         <!-- For Journal  -->
         <section class="journal-section">
-          <h2>Your Journal Entries</h2>
+          <h2 class="text-center text-xl">Recent Journal Entry</h2>
+          <%if (latestEntry) {%>
+            <div class="border-2 border-lavendar h-[164px]">
+              <!-- Display entry title -->
+              <h3 class="font-bold text-orchid text-xl py-2">
+                <%= latestEntry.title %>
+              </h3>
+              <!-- Display entry content -->
+              <p class="">
+                <%= latestEntry.entry %>
+              </p>
+            </div>
+         <% } %>
+        <a href="/journal" class="italic text-floral">See more entries</a>
         </section>
         <!-- For Gallery -->
-        <section class="gallery-section">
-          <h2>Your Hair Gallery</h2>
+        <section class="gallery-section p-2 ">
+          <h2 class="text-center text-xl">Recent Uploads</h2>
+        <% if (images && images.length> 0) { %>
+          <div class="grid grid-flow-col auto-cols-max gap-9 flex justify-center border-2 border-lavendar py-4">
+            <% images.forEach(image=> { %>
+              <div class="w-40 h-40">
+                <img src="<%= image.image %>" alt="<%= image.caption %>" class="object-cover object-top w-40 h-40">
+              </div>
+              <% }); %>
+              <% } else { %>
+                <p>No images found in your gallery.</p>
+                <% } %>
+          </div>
+          <a href="/gallery" class="italic text-floral">See more photos</a>
         </section>
         <!-- For quiz results/ hair routine -->
         <section class="results-section">
           <h2>Your Quiz Results</h2>
         </section>
-      </section>
+
+      </div>
+    </section>
       
 <%- include('partials/footer') -%>

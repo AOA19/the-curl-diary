@@ -5,13 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hair Quiz</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon.png" />
     <link rel="stylesheet" href="/css/output.css">
 </head>
 <body>
-    <div class="px-16">
+    <section class="px-16">
         <h1 class="text-center text-2xl mb-8">Hair Quiz</h1>
         <!-- <p>Complete the below quiz to </p> -->
-        <form action="/quizresults" method="POST">
+        <form action="/dashboard">
             <!-- Question 1 -->
             <div class="quiz-question mb-8">
                 <h3 class="text-lg mb-3">1. Describe your curl pattern</h3>
@@ -362,7 +363,7 @@
                             </label>
                         </div>
                     </div>
-                <button class="rounded-md bg-blue-700 hover:bg-blue-600 px-3 py-1.5 mx-2 text-white mt-3" type="submit">Get Results</button>
+                <button class="rounded-md bg-orchid hover:bg-floral px-3 py-1.5 mx-2 text-white mt-3" type="submit">Get Results</button>
             </form>
-    </div>
+    </section>
 <%- include('partials/footer') -%>

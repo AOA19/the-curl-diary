@@ -2,7 +2,13 @@
 module.exports = {
   content: ["./views/**/*.ejs", "./public/**/*.js"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        orchid: "#75328A",
+        floral: "#BC89DC",
+        lavendar: "#DECAE1",
+      },
+    },
   },
   plugins: [],
 };

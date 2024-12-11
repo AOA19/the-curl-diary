@@ -30,29 +30,31 @@ module.exports = {
       console.log(err);
     }
   },
-  updateCaption : async (req, res) => {
-    try {
-      await Gallery.findByIdAndUpdate(req.params.id,
-        {caption: req.body.caption},
-        {new: true}
-      );
-      console.log("Caption updated")
-      res.redirect("/gallery")
-    } catch (err) {
-      console.log(err)
-      res.redirect("/gallery")
-    }
-  },
+  // updateCaption : async (req, res) => {
+  //   try {
+  //     await Gallery.findByIdAndUpdate(req.params.id,
+  //       {caption: req.body.caption},
+  //       {new: true}
+  //     );
+  //     console.log("Caption updated")
+  //     res.redirect("/gallery")
+  //   } catch (err) {
+  //     console.log(err)
+  //     res.redirect("/gallery")
+  //   }
+  // },
 
   deleteImage: async (req, res) => {
     try {
       // Find post by id
+      // console.log(req.params.id)
       const galleries = await Gallery.findById(req.params.id);
+      // console.log(galleries)
       // Delete image from cloudinary
       await cloudinary.uploader.destroy(galleries.cloudinaryId);
 
       // Delete post from db
-      await Gallery.findOneAndDelete(req.params.id);
+      await Gallery.findOneAndDelete({ _id: req.params.id });
       console.log("Deleted Photo");
       res.redirect("/gallery");
     } catch (err) {
