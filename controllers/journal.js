@@ -37,14 +37,14 @@ module.exports = {
     }
   },
   updateEntry: async (req, res) => {
-    console.log("This is the is of journal:" ,req.params.id,  "This is the info in form:",req.body)
+    // console.log("This is the is of journal:" ,req.params.id,  "This is the info in form:",req.body)
     const entryId = req.params.id;
     const title = req.body.editTitle;
     const entry = req.body.editEntry;
     
     try {
      const updateJournalEntry = await Journal.findOneAndUpdate({ _id: entryId }, { title: title, entry: entry }, { new: true, upsert: true });
-      console.log("Updated journal", updateJournalEntry.title, updateJournalEntry.entry)
+      // console.log("Updated journal", updateJournalEntry.title, updateJournalEntry.entry)
       console.log("Entry updated!");
       res.redirect("/journal",);
     } catch (err) {

@@ -47,12 +47,14 @@ module.exports = {
   deleteImage: async (req, res) => {
     try {
       // Find post by id
+      // console.log(req.params.id)
       const galleries = await Gallery.findById(req.params.id);
+      // console.log(galleries)
       // Delete image from cloudinary
       await cloudinary.uploader.destroy(galleries.cloudinaryId);
 
       // Delete post from db
-      await Gallery.findOneAndDelete(req.params.id);
+      await Gallery.findOneAndDelete({ _id: req.params.id });
       console.log("Deleted Photo");
       res.redirect("/gallery");
     } catch (err) {

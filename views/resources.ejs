@@ -4,10 +4,155 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hair Resources</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon.png" />
     <link rel="stylesheet" href="/css/output.css">
 </head>
 <body>
-    <h1>Resources</h1>
-    <p>User will be able to search for different hair resources </p>
+    <nav class="fixed top-0 z-50 w-full bg-orchid border-b border-gray-200">
+        <div class="px-3 py-3 lg:px-5 lg:pl-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center justify-start rtl:justify-end">
+                    <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar"
+                        type="button"
+                        class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
+                        <span class="sr-only">Open sidebar</span>
+                        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path clip-rule="evenodd" fill-rule="evenodd"
+                                d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z">
+                            </path>
+                        </svg>
+                    </button>
+                    <a href="/dashboard" class="flex ms-2 md:me-24">
+                        <h1 class="text-white text-2xl font-['Brasika-Display']">The Curl Diary</h1>
+                    </a>
+                </div>
+                <div class="flex items-center">
+                    <div class="flex items-center ms-3">
+                        <div>
+                            <button type="button"
+                                class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300"
+                                aria-expanded="false" data-dropdown-toggle="dropdown-user">
+                                <span class="sr-only">Open user menu</span>
+                                <img class="w-10 h-10 rounded-full" src="<%=user.profilePic%>"
+                                    alt="<%=user.userName%> profile photo">
+                            </button>
+                        </div>
+                        <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow"
+                            id="dropdown-user">
+                            <div class="px-4 py-3" role="none">
+                                <p class="text-sm text-gray-900" role="none">
+                                    <%=user.userName%>
+                                </p>
+                                <p class="text-sm font-medium text-gray-900 truncate" role="none">
+                                    <%=user.email%>
+                                </p>
+                            </div>
+                            <ul class="py-1" role="none">
+                                <li>
+                                    <a href="account" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                        role="menuitem">Account Settings</a>
+                                </li>
+                                <li>
+                                    <a href="logout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                        role="menuitem">Log out</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <aside id="logo-sidebar"
+        class="fixed top-0 left-0 z-40 w-64 h-full pt-20 transition-transform -translate-x-full bg-orchid border-r border-gray-200 sm:translate-x-0"
+        aria-label="Sidebar">
+        <div class="h-full px-3 pb-4 overflow-y-auto">
+            <ul class="space-y-2 font-medium">
+                <li>
+                    <a href="/dashboard" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-lavendar group">
+                        <span class="ms-3 text-white hover:text-orchid">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/journal" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-lavendar group">
+                        <span class="flex-1 ms-3 whitespace-nowrap text-white hover:text-orchid ">Journal</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/gallery" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-lavendar group"
+                       >
+                        <span class="flex-1 ms-3 whitespace-nowrap text-white hover:text-orchid">Hair Gallery</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/resources" class="flex items-center p-2 text-gray-900 rounded-lg bg-lavendar group" aria-current="page">
+                        <span class="flex-1 ms-3 whitespace-nowrap text-orchid">Resources</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/quiz" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-lavendar">
+                        <span class="flex-1 ms-3 whitespace-nowrap text-white hover:text-orchid">Hair Quiz</span>
+                    </a>
+                </li>
+            </ul>
+            <ul>
+                <li class="mt-[130%] border-t border-gray-200">
+                    <a href="/logout" class="flex items-center p-2 text-gray-900 rounded-lg ">
+                        <span class="flex-1 ms-3 whitespace-nowrap text-white">Log Out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+    <section class="p-4 sm:ml-64 mt-16 text-center">
+        <h1>Resources</h1>
+        <form class="max-w-lg mx-auto">
+            <div class="flex">
+                <label for="search-dropdown" class="mb-2 text-sm font-medium text-gray-900 sr-only">Your
+                    Email</label>
+                <button id="dropdown-button" data-dropdown-toggle="dropdown"
+                    class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100"
+                    type="button">All categories <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 4 4 4-4" />
+                    </svg></button>
+                <div id="dropdown"
+                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
+                    <ul class="py-2 text-sm text-gray-700 " aria-labelledby="dropdown-button">
+                        <li>
+                            <button type="button"
+                                class="inline-flex w-full px-4 py-2 hover:bg-gray-100">Articles</button>
+                        </li>
+                        <li>
+                            <button type="button"
+                                class="inline-flex w-full px-4 py-2 hover:bg-gray-100">Vidoes</button>
+                        </li>
+                        <li>
+                            <button type="button"
+                                class="inline-flex w-full px-4 py-2 hover:bg-gray-100">Blogs</button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="relative w-full">
+                    <input type="search" id="search-dropdown"
+                        class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                        placeholder="Search Articles, Videos, Blogs..." required />
+                    <button type="submit"
+                        class="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-orchid rounded-e-lg border border-orchid hover:bg-floral focus:ring-4 focus:outline-none focus:ring-floral">
+                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                        </svg>
+                        <span class="sr-only">Search</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+
+    </section>
     
 <%- include('partials/footer') -%>

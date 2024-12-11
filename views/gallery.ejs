@@ -4,99 +4,202 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hair Gallery</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon.png" />
     <!-- For Tailwind -->
     <link rel="stylesheet" href="/css/output.css">
     <!-- Flowbite CDN -->
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
 </head>
 <body>
-    <h1 class="text-center font-bold">Hair Gallery</h1>
-    <div class="mt-6">
-        <h2 class="text-center">Add to your gallery</h2>
-    </div>
-    <!-- Modal toggle -->
-    <button data-modal-target="gallery-modal" data-modal-toggle="gallery-modal"
-        class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        type="button">
-        Add New Photo
-    </button>
-    <!-- Main modal -->
-    <div id="gallery-modal" tabindex="-1" aria-hidden="true"
-        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-        <div class="relative p-4 w-full max-w-md max-h-full">
-            <!-- Modal content -->
-            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                <!-- Modal header -->
-                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        Add New Photo
-                    </h3>
-                    <button type="button"
-                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-modal-toggle="gallery-modal">
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+    <nav class="fixed top-0 z-50 w-full bg-orchid border-b border-gray-200">
+        <div class="px-3 py-3 lg:px-5 lg:pl-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center justify-start rtl:justify-end">
+                    <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar"
+                        type="button"
+                        class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
+                        <span class="sr-only">Open sidebar</span>
+                        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path clip-rule="evenodd" fill-rule="evenodd"
+                                d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z">
+                            </path>
                         </svg>
-                        <span class="sr-only">Close modal</span>
                     </button>
+                    <a href="/dashboard" class="flex ms-2 md:me-24">
+                        <h1 class="text-white text-2xl font-['Brasika-Display']">The Curl Diary</h1>
+                    </a>
                 </div>
-    
-                <!-- Modal body -->
-                <form action="/gallery/createImage" enctype="multipart/form-data" method="POST" class="p-4 md:p-5">
-                    <div class="mb-4">
-                        <div class="col-span-2">
-                            <label for="imgUpload"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload Photo</label>
-                            <input type="file" name="file" id="imgUpload"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                required>
+                <div class="flex items-center">
+                    <div class="flex items-center ms-3">
+                        <div>
+                            <button type="button"
+                                class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300"
+                                aria-expanded="false" data-dropdown-toggle="dropdown-user">
+                                <span class="sr-only">Open user menu</span>
+                                <img class="w-10 h-10 rounded-full" src="<%=user.profilePic%>"
+                                    alt="<%=user.userName%> profile photo">
+                            </button>
                         </div>
-                        <div class="col-span-2 mt-4">
-                            <label for="caption"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Caption</label>
-                            <textarea id="caption" rows="4" name="caption"
-                                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Write your caption here" required></textarea>
+                        <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow"
+                            id="dropdown-user">
+                            <div class="px-4 py-3" role="none">
+                                <p class="text-sm text-gray-900" role="none">
+                                    <%=user.userName%>
+                                </p>
+                                <p class="text-sm font-medium text-gray-900 truncate" role="none">
+                                    <%=user.email%>
+                                </p>
+                            </div>
+                            <ul class="py-1" role="none">
+                                <li>
+                                    <a href="account" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                        role="menuitem">Account Settings</a>
+                                </li>
+                                <li>
+                                    <a href="logout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                        role="menuitem">Log out</a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                    <button type="submit"
-                        class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                        Add photo
-                    </button>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-        <ul class="">
-            <!-- Display image -->
-            <% for(var i=0; i<galleries.length; i++) {%>
-                <li class="col-6 justify-content-between mt-5">
-                    <img class="" src="<%= galleries[i].image%>">
-                    <span class="">
-                        <%=galleries[i].caption%>
-                    </span>
-                    <span class=""><span class="font-bold">Date Added:</span><%=galleries[i].createdAt.toLocaleDateString()%></span>
+    </nav>
+    
+    <aside id="logo-sidebar"
+        class="fixed top-0 left-0 z-40 w-64 h-full pt-20 transition-transform -translate-x-full bg-orchid border-r border-gray-200 sm:translate-x-0"
+        aria-label="Sidebar">
+        <div class="h-full px-3 pb-4 overflow-y-auto">
+            <ul class="space-y-2 font-medium">
+                <li>
+                    <a href="/dashboard" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-lavendar group"
+                        >
+                        <span class="ms-3 text-white hover:text-orchid">Dashboard</span>
+                    </a>
                 </li>
-                    <!-- Edit Image caption -->
-                        <!-- Delete image -->
-                        <%if(galleries[i].user==user.id){ %>
-                            <form action="/gallery/deleteImage/<%= galleries[i].id %>?_method=DELETE" method="POST"
-                                class="">
-                                <button class="fa-regular fa-trash-can" type="submit"></button>
-                            </form>
-                            <%}%>
-                    <%}%>
-        </ul>
-    </div>
+                <li>
+                    <a href="/journal" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-lavendar group">
+                        <span class="flex-1 ms-3 whitespace-nowrap text-white hover:text-orchid ">Journal</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/gallery" class="flex items-center p-2 text-gray-900 rounded-lg bg-lavendar group" aria-current="page">
+                        <span class="flex-1 ms-3 whitespace-nowrap text-orchid">Hair Gallery</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/resources" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-lavendar group">
+                        <span class="flex-1 ms-3 whitespace-nowrap text-white hover:text-orchid">Resources</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/quiz" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-lavendar">
+                        <span class="flex-1 ms-3 whitespace-nowrap text-white hover:text-orchid">Hair Quiz</span>
+                    </a>
+                </li>
+            </ul>
+            <ul>
+                <li class="mt-[130%] border-t border-gray-200">
+                    <a href="/logout" class="flex items-center p-2 text-gray-900 rounded-lg ">
+                        <span class="flex-1 ms-3 whitespace-nowrap text-white">Log Out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+    <!-- Left Content -->
+     <section class="p-4 sm:ml-64">
+         <h1 class="text-center font-bold">Hair Gallery</h1>
+         <div class="mt-6">
+             <h2 class="text-center">Add to your gallery</h2>
+         </div>
+         <!-- Modal toggle -->
+         <button data-modal-target="gallery-modal" data-modal-toggle="gallery-modal"
+             class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+             type="button">
+             Add New Photo
+         </button>
+         <!-- Main modal -->
+         <div id="gallery-modal" tabindex="-1" aria-hidden="true"
+             class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+             <div class="relative p-4 w-full max-w-md max-h-full">
+                 <!-- Modal content -->
+                 <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                     <!-- Modal header -->
+                     <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                         <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                             Add New Photo
+                         </h3>
+                         <button type="button"
+                             class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                             data-modal-toggle="gallery-modal">
+                             <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                 viewBox="0 0 14 14">
+                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                     d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                             </svg>
+                             <span class="sr-only">Close modal</span>
+                         </button>
+                     </div>
+         
+                     <!-- Modal body -->
+                     <form action="/gallery/createImage" enctype="multipart/form-data" method="POST" class="p-4 md:p-5">
+                         <div class="mb-4">
+                             <div class="col-span-2">
+                                 <label for="imgUpload"
+                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload Photo</label>
+                                 <input type="file" name="file" id="imgUpload"
+                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                     required>
+                             </div>
+                             <div class="col-span-2 mt-4">
+                                 <label for="caption"
+                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Caption</label>
+                                 <textarea id="caption" rows="4" name="caption"
+                                     class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                     placeholder="Write your caption here" required></textarea>
+                             </div>
+                         </div>
+                         <button type="submit"
+                             class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                             <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                 <path fill-rule="evenodd"
+                                     d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                     clip-rule="evenodd"></path>
+                             </svg>
+                             Add photo
+                         </button>
+                     </form>
+                 </div>
+             </div>
+         </div>
+         <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+             <ul class="">
+                 <!-- Display image -->
+                 <% for(var i=0; i<galleries.length; i++) {%>
+                     <li class="col-6 justify-content-between mt-5">
+                         <img class="" src="<%= galleries[i].image%>">
+                         <span class="">
+                             <%=galleries[i].caption%>
+                         </span>
+                         <span class=""><span class="font-bold">Date Added:</span><%=galleries[i].createdAt.toLocaleDateString()%></span>
+                     </li>
+                         <!-- Edit Image caption -->
+                             <!-- Delete image -->
+                             <%if(galleries[i].user==user.id){ %>
+                                 <form action="/gallery/deleteImage/<%= galleries[i].id %>?_method=DELETE" method="POST"
+                                     class="">
+                                     <button class="fa-regular fa-trash-can" type="submit"></button>
+                                 </form>
+                                 <%}%>
+                         <%}%>
+             </ul>
+         </div>
+
+     </section>
 
 
 <%- include('partials/footer') -%>
