@@ -3,7 +3,7 @@ const Journal = require("../models/Journal");
 module.exports = {
   getJournal: async (req, res) => {
     try {
-      const journals = await Journal.find().sort({ createdAt: "desc" });
+      const journals = await Journal.find({ user: req.user }).sort({ createdAt: "desc" });
       // console.log(galleries)
       res.render("journal.ejs", { journals: journals, user: req.user });
     } catch (err) {
@@ -20,17 +20,6 @@ module.exports = {
       });
       console.log("Entry added!");
       res.redirect("/journal");
-    } catch (err) {
-      console.log(err);
-      res.redirect("/journal");
-    }
-  },
-  // Render form for editing existing entry
-  editEntry: async (req, res) => {
-    try {
-      const journal = await Journal.findById(req.params.id,);
-      console.log("Entry edited");
-      res.redirect("/journal", journal);
     } catch (err) {
       console.log(err);
       res.redirect("/journal");
