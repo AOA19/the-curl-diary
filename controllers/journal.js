@@ -25,17 +25,6 @@ module.exports = {
       res.redirect("/journal");
     }
   },
-  // Render form for editing existing entry
-  editEntry: async (req, res) => {
-    try {
-      const journal = await Journal.findById(req.params.id,);
-      console.log("Entry edited");
-      res.redirect("/journal", journal);
-    } catch (err) {
-      console.log(err);
-      res.redirect("/journal");
-    }
-  },
   updateEntry: async (req, res) => {
     // console.log("This is the is of journal:" ,req.params.id,  "This is the info in form:",req.body)
     const entryId = req.params.id;
