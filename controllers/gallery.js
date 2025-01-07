@@ -4,7 +4,7 @@ const Gallery = require("../models/Gallery");
 module.exports = {
   getGallery: async (req, res) => {
     try {
-      const galleries = await Gallery.find().sort({ createdAt: "desc" });
+      const galleries = await Gallery.find({user: req.user}).sort({ createdAt: "desc" });
       // console.log(galleries)
       res.render("gallery.ejs", { galleries: galleries, user: req.user });
     } catch (err) {

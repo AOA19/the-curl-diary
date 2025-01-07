@@ -3,7 +3,7 @@ const Journal = require("../models/Journal");
 module.exports = {
   getJournal: async (req, res) => {
     try {
-      const journals = await Journal.find().sort({ createdAt: "desc" });
+      const journals = await Journal.find({ user: req.user }).sort({ createdAt: "desc" });
       // console.log(galleries)
       res.render("journal.ejs", { journals: journals, user: req.user });
     } catch (err) {
