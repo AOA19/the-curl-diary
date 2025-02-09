@@ -2,7 +2,7 @@
 
 The Curl Diary is a full-stack natural hair tracker application that allow users to track their natural hair journey by providing a space where they can see their growth, and find resources that will help them on their journey all in one place.
 
-**Project Link:** https://the-curl-diary.up.railway.app/
+<!-- **Project Link:** https://the-curl-diary.up.railway.app/ -->
 
 ## Running The Project
 
